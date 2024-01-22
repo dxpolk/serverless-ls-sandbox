@@ -1,0 +1,26 @@
+service: numpy-test
+
+
+plugins:
+  - serverless-localstack
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.9
+  region: us-east-1
+  stackName: demo1
+  timeout: 15
+
+custom:
+  region: us-east-1
+  accountID: '000000000000'
+  localstack:
+    stages: [local]
+    host: http://127.0.0.1
+    debug: true
+
+functions:
+  hello:
+    handler: handler.hello
