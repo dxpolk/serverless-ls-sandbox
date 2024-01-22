@@ -3,6 +3,7 @@ service: numpy-test
 
 plugins:
   - serverless-localstack
+  - serverless-python-requirements
 
 frameworkVersion: '3'
 
@@ -21,6 +22,8 @@ custom:
     host: http://127.0.0.1
     edgePort: 4566
     debug: true
+  pythonRequirements:
+    dockerizePip: non-linux
 
 functions:
   hello:

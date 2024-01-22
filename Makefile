@@ -1,11 +1,13 @@
 usage:
 	@echo "Usage: make [target]"
+	@echo ""
 	@echo "Targets:"
-	@echo "  install     - install dependencies"
-	@echo "  install-dev - install dependencies for development"
-	@echo "  clean       - clean up"
-	@echo "  deploy      - deploy to AWS"
-	@echo "  invoke      - invoke function locally"
+	@echo "  install-dev		Install development dependencies"
+	@echo "  install		Install dependencies"
+	@echo "  clean			Remove dependencies"
+	@echo "  deploy			Deploy to AWS"
+	@echo "  invoke			Invoke function locally"
+	@echo "  run-local		Run function locally"
 
 install-dev: install
 	pipenv install --dev
@@ -14,6 +16,7 @@ install:
 	npm install
 	mkdir -pv ./.venv
 	pipenv install
+	pipenv run pip freeze > requirements.txt
 
 clean:
 	rm -rf ./.venv
@@ -28,7 +31,7 @@ deploy:
 invoke:
 	serverless invoke local --function hello --stage local
 
-invoke-local:
+run-local:
 	pipenv run python ./handler.py
 
-.PHONY: install install-dev clean deploy invoke
+.PHONY: usage install-dev install clean deploy invoke run-local
