@@ -11,6 +11,7 @@ usage:
 
 install-dev: install
 	pipenv install --dev
+	pipenv requirements --dev > requirements-dev.txt
 
 install: 
 	npm install
