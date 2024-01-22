@@ -16,14 +16,14 @@ install:
 	npm install
 	mkdir -pv ./.venv
 	pipenv install
-	pipenv run pip freeze > requirements.txt
+	pipenv requirements > requirements.txt
 
 clean:
 	rm -rf ./.venv
 	rm -f ./requirements.txt
 	rm -f ./requirements-dev.txt
 	rm -f ./Pipfile.lock%
-	rm -f ./node_modules
+	rm -rf ./node_modules
 
 deploy:
 	SLS_DEBUG=1 serverless deploy --stage local
